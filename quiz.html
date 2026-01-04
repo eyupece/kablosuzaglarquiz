@@ -432,7 +432,8 @@
         let totalAnswered = 0;
         let correctCount = 0;
         let wrongCount = 0;
-        let usedQuestions = new Set();
+        let usedQuestions = new Set(); // Cevaplanmış sorular
+        let wrongQuestions = new Set(); // Yanlış cevaplanan sorular
         let shuffledOptions = []; // Rastgele sıralanmış şıklar
         let originalCorrectIndex = -1; // Orijinal doğru cevap index'i
 
@@ -446,15 +447,23 @@
             return shuffled;
         }
 
-        // Rastgele soru seç (cevaplanmamış sorulardan)
+        // Rastgele soru seç (cevaplanmamış sorulardan, tüm sorular bitince yanlışları sor)
         function randomQuestion() {
-            // Cevaplanmış soruları çıkar
+            // Önce cevaplanmamış sorulardan seç
             let availableQuestions = allQuestions.filter((_, index) => !usedQuestions.has(index));
             
-            // Eğer tüm sorular cevaplandıysa, listeyi sıfırla
+            // Eğer tüm sorular cevaplandıysa
             if (availableQuestions.length === 0) {
-                usedQuestions.clear();
-                availableQuestions = allQuestions;
+                // Yanlış cevaplanan sorular varsa, sadece onları sor
+                if (wrongQuestions.size > 0) {
+                    availableQuestions = allQuestions.filter((_, index) => wrongQuestions.has(index));
+                    // Yanlış soruları tekrar sorabilmek için usedQuestions'ı sadece yanlış olmayanları tutacak şekilde güncelle
+                    usedQuestions = new Set(allQuestions.map((_, index) => index).filter(i => !wrongQuestions.has(i)));
+                } else {
+                    // Yanlış soru yoksa, tüm soruları tekrar sor
+                    usedQuestions.clear();
+                    availableQuestions = allQuestions;
+                }
             }
 
             const randomIndex = Math.floor(Math.random() * availableQuestions.length);
@@ -569,12 +578,16 @@
                 resultDiv.textContent = '✅ Doğru Cevap!';
                 resultDiv.className = 'result correct';
                 correctCount++;
+                // Doğru cevaplanan soruyu yanlışlar listesinden çıkar (eğer varsa)
+                wrongQuestions.delete(currentQuestionIndex);
             } else {
                 const correctText = shuffledOptions[correctIndex].text;
                 resultDiv.textContent = `❌ Yanlış Cevap! Doğru cevap: ${correctText}`;
                 resultDiv.className = 'result incorrect';
                 wrongCount++;
                 options[selectedOption].classList.add('incorrect');
+                // Yanlış cevaplanan soruyu yanlışlar listesine ekle
+                wrongQuestions.add(currentQuestionIndex);
             }
 
             resultDiv.style.display = 'block';
