@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kablosuz İletişim Quiz Uygulaması</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.05em;
+        }
+
+        .option:hover {
+            background: #e8eaf6;
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .option.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #764ba2;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5d3a7e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+
+        .btn-success {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #45a049;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .result.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .result.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        .result.show-answer {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .question-text {
+                font-size: 1em;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="header">
+            <h1>📡 Kablosuz İletişim Quiz</h1>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="totalQuestions">0</div>
+                <div class="stat-label">Toplam Soru</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="correctAnswers">0</div>
+                <div class="stat-label">Doğru</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="wrongAnswers">0</div>
+                <div class="stat-label">Yanlış</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="accuracy">0%</div>
+                <div class="stat-label">Başarı Oranı</div>
+            </div>
+        </div>
+
+        <div class="question-container">
+            <div class="question-number" id="questionNumber">Soru 1</div>
+            <div class="question-text" id="questionText">Sorular yükleniyor...</div>
+            <div class="options" id="options"></div>
+            <div class="result" id="result" style="display: none;"></div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn-primary" id="nextBtn" onclick="nextQuestion()">Sonraki Soru</button>
+            <button class="btn-secondary" id="randomBtn" onclick="randomQuestion()">Rastgele Soru</button>
+            <button class="btn-success" id="checkBtn" onclick="checkAnswer()" style="display: none;">Cevabı Kontrol Et</button>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script>
+        let currentQuestionIndex = -1;
+        let selectedOption = null;
+        let totalAnswered = 0;
+        let correctCount = 0;
+        let wrongCount = 0;
+        let usedQuestions = new Set();
+
+        // Soruları karıştır
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Rastgele soru seç
+        function randomQuestion() {
+            if (usedQuestions.size >= allQuestions.length) {
+                usedQuestions.clear();
+            }
+
+            let availableQuestions = allQuestions.filter((_, index) => !usedQuestions.has(index));
+            
+            if (availableQuestions.length === 0) {
+                usedQuestions.clear();
+                availableQuestions = allQuestions;
+            }
+
+            const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+            const questionIndex = allQuestions.indexOf(availableQuestions[randomIndex]);
+            
+            currentQuestionIndex = questionIndex;
+            usedQuestions.add(questionIndex);
+            displayQuestion();
+        }
+
+        // Sonraki soru
+        function nextQuestion() {
+            randomQuestion();
+        }
+
+        // Soruyu göster
+        function displayQuestion() {
+            const question = allQuestions[currentQuestionIndex];
+            selectedOption = null;
+
+            document.getElementById('questionNumber').textContent = `Soru ${currentQuestionIndex + 1} / ${allQuestions.length}`;
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index);
+                optionsDiv.appendChild(optionDiv);
+            });
+
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('checkBtn').style.display = 'block';
+            document.getElementById('nextBtn').disabled = true;
+
+            updateStats();
+        }
+
+        // Seçenek seç
+        function selectOption(index) {
+            if (document.getElementById('result').style.display !== 'none') return;
+
+            selectedOption = index;
+            const options = document.querySelectorAll('.option');
+            options.forEach((opt, i) => {
+                opt.classList.remove('selected');
+                if (i === index) {
+                    opt.classList.add('selected');
+                }
+            });
+
+            document.getElementById('checkBtn').disabled = false;
+        }
+
+        // Cevabı kontrol et
+        function checkAnswer() {
+            if (selectedOption === null) return;
+
+            const question = allQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            const resultDiv = document.getElementById('result');
+            
+            // Tüm seçenekleri devre dışı bırak
+            options.forEach(opt => {
+                opt.classList.add('disabled');
+                opt.onclick = null;
+            });
+
+            // Doğru cevabı göster
+            const correctIndex = question.correctAnswer;
+            options[correctIndex].classList.add('correct');
+
+            if (selectedOption === correctIndex) {
+                resultDiv.textContent = '✅ Doğru Cevap!';
+                resultDiv.className = 'result correct';
+                correctCount++;
+            } else {
+                resultDiv.textContent = `❌ Yanlış Cevap! Doğru cevap: ${question.options[correctIndex]}`;
+                resultDiv.className = 'result incorrect';
+                wrongCount++;
+                options[selectedOption].classList.add('incorrect');
+            }
+
+            resultDiv.style.display = 'block';
+            document.getElementById('checkBtn').style.display = 'none';
+            document.getElementById('nextBtn').disabled = false;
+            
+            totalAnswered++;
+            updateStats();
+        }
+
+        // İstatistikleri güncelle
+        function updateStats() {
+            document.getElementById('totalQuestions').textContent = allQuestions.length;
+            document.getElementById('correctAnswers').textContent = correctCount;
+            document.getElementById('wrongAnswers').textContent = wrongCount;
+            
+            const accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+            document.getElementById('accuracy').textContent = accuracy + '%';
+        }
+
+        // Sayfa yüklendiğinde ilk soruyu göster
+        window.onload = function() {
+            updateStats();
+            randomQuestion();
+        };
+    </script>
+</body>
+</html>
+
