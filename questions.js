@@ -20,7 +20,7 @@ const allQuestions = [
         "correctAnswer": 1
     },
     {
-        "question": "Bir kablosuz sistemde SNR (Sinyal-Gürültü Oranı) değeri sabit tutularak modülasyon tekniği BPSK'den 16-QAM'e değiştirilmektedir. Bant genişliği sabit kalacak şekilde sistemin veri hızı 4 kat artırılmak istenmektedir. Bu durumda aşağıdaki ifadelerden hangisi/hangileri DOĞRUDUR?",
+        "question": "Bir kablosuz sistemde SNR (Sinyal-Gürültü Oranı) değeri sabit tutularak modülasyon tekniği BPSK'den 16-QAM'e değiştirilmektedir. Bant genişliği sabit kalacak şekilde sistemin veri hızı 4 kat artırılmak istenmektedir. Bu durumda aşağıdaki ifadelerden hangisi/hangileri DOĞRUDUR? I. Sembol hızı (baud rate) değişmez II. Bit hata oranı (BER) artar III. Spektral verimlilik artar IV. Semboller arası minimum Öklid mesafesi artar",
         "options": [
             "Yalnız I",
             "I ve II",
@@ -53,7 +53,7 @@ const allQuestions = [
         "correctAnswer": 0
     },
     {
-        "question": "Bir kablosuz haberleşme sistemi aşağıdaki özelliklere sahiptir:",
+        "question": "Bir kablosuz haberleşme sistemi aşağıdaki özelliklere sahiptir: Aynı frekans bandı eş zamanlı olarak birçok kullanıcı tarafından kullanılmaktadır. Fiziksel guard band veya time guard band kullanılmamaktadır. Çok yollu yayılımın (multipath) neden olduğu ISI etkisi düşüktür. Sistem, bant genişliğini maksimum spektral verimlilikle kullanmaktadır. Bu sisteme ait en doğru teknik eşleşme aşağıdakilerden hangisidir?",
         "options": [
             "FDD + FDM",
             "TDD + TDM",
@@ -117,7 +117,7 @@ const allQuestions = [
         "correctAnswer": 2
     },
     {
-        "question": "Bir sistem 8-PSK kullanmaktadır. Sembol hızı (baud rate / signal rate) S = 1500 baud’dur.",
+        "question": "Bir sistem 8-PSK kullanmaktadır. Sembol hızı (baud rate / signal rate) S = 1500 baud’dur. 8-PSK’de her sembolün taşıdığı bit sayısı dikkate alınırsa, bit hızı (bit rate) N kaçtır?",
         "options": [
             "1500 bps",
             "3000 bps",
@@ -182,7 +182,7 @@ const allQuestions = [
         "correctAnswer": 3
     },
     {
-        "question": "5G ağlarında kullanılan Millimeter Wave (Milimetre Dalga) teknolojisi, 30 GHz ile 300 GHz arasındaki yüksek frekans bantlarını ifade eder. Bu teknoloji çok yüksek veri hızlarına imkan tanısa da fiziksel yayılım açısından bazı sınırlamalara sahiptir.",
+        "question": "5G ağlarında kullanılan Millimeter Wave (Milimetre Dalga) teknolojisi, 30 GHz ile 300 GHz arasındaki yüksek frekans bantlarını ifade eder. Bu teknoloji çok yüksek veri hızlarına imkan tanısa da fiziksel yayılım açısından bazı sınırlamalara sahiptir. Buna göre, mmWave teknolojisinin bu kısıtlamalarını aşmak ve kapsama alanını optimize etmek için 5G mimarisinde aşağıdaki yöntemlerden hangisi en kritik rolü oynar?",
         "options": [
             "Enerji tasarrufu için baz istasyonu sayısını azaltmak",
             "Düşük frekanslı 4G spektrumuna tamamen geri dönmek",
@@ -193,7 +193,7 @@ const allQuestions = [
         "correctAnswer": 2
     },
     {
-        "question": "5G'de Massive MIMO (Çoklu Giriş Çoklu Çıkış), bir baz istasyonunda yüzlerce antenin aynı anda kullanılmasına olanak tanır. Bu teknoloji, sistem kapasitesini artırmak için Beamforming (Hüzmeleme) ile birlikte çalışır.",
+        "question": "5G'de Massive MIMO (Çoklu Giriş Çoklu Çıkış), bir baz istasyonunda yüzlerce antenin aynı anda kullanılmasına olanak tanır. Bu teknoloji, sistem kapasitesini artırmak için Beamforming (Hüzmeleme) ile birlikte çalışır. Aşağıdakilerden hangisi \"Beamforming\" teknolojisinin Massive MIMO sistemlerine sağladığı temel avantajdır?",
         "options": [
             "Sinyali her yöne eşit dağıtarak genel kapsama alanını genişletmek",
             "Sinyali belirli bir kullanıcıya doğru odaklayarak enerji verimliliğini artırmak ve girişimi (interference) azaltmak",
@@ -398,7 +398,7 @@ const allQuestions = [
         "correctAnswer": 1
     },
     {
-        "question": "Can, evindeki Wi-Fi ağını kullanırken modern yönlendiricilerin hem 2.4 GHz hem de 5 GHz bandında yayın yaptığını görür. Yan odada ve duvar arkasında 2.4 GHz sinyalinin, 5 GHz'e göre çok daha güçlü çektiğini fark eder.",
+        "question": "Can, evindeki Wi-Fi ağını kullanırken modern yönlendiricilerin hem 2.4 GHz hem de 5 GHz bandında yayın yaptığını görür. Yan odada ve duvar arkasında 2.4 GHz sinyalinin, 5 GHz'e göre çok daha güçlü çektiğini fark eder. Fizik kurallarına göre, 2.4 GHz sinyallerinin engellerin (duvar, kapı vb.) arkasına daha iyi ulaşmasının temel sebebi nedir?",
         "options": [
             "2.4 GHz sinyallerinin daha yüksek enerji taşıması",
             "2.4 GHz sinyallerinin daha kısa dalga boyuna sahip olması",
@@ -515,7 +515,7 @@ const allQuestions = [
         "correctAnswer": 0
     },
     {
-        "question": "Aşağıdaki cümlelerden hangisi FM için doğrudur?",
+        "question": "Aşağıdaki cümlelerden hangisi FM için doğrudur? 1-Taşıyıcı dalganın anlık genliği bilgi sinyaline bağlı olarak değişir. 2-Taşıyıcı dalganın anlık frekansı bilgi sinyaline bağlı olarak değişir. 3-Demodülasyon sırasında zarf dedektörü (envelope detector) kullanılabilir. 4-Aynı güçte yayın yapıldığında gürültü performansı (SNR) genelde daha iyidir. 5-Taşıyıcı sinyalin genliği teorik olarak sabittir (sabit zarflı sinyal).",
         "options": [
             "1,3",
             "2,4,5",
@@ -633,7 +633,7 @@ const allQuestions = [
         "correctAnswer": 3
     },
     {
-        "question": "I.Anten Boyutu ve Dalga boyu uygunluğu",
+        "question": "I.Anten Boyutu ve Dalga boyu uygunluğu II.Spektrumun düzenli kullanılması III.Gürültü ve kanal bozulmalarına Dayanıklılık IV.Bant genişliği Yukarıdakilerden hangileri modülasyonun gerekli olma nedenleri arasındadır?",
         "options": [
             "I ve III",
             "I, II ve III",
@@ -752,7 +752,7 @@ const allQuestions = [
         "correctAnswer": 2
     },
     {
-        "question": "Bir fabrikada aynı ortamda çalışan çok sayıda kablosuz sensör ve kontrol cihazı bulunmaktadır.",
+        "question": "Bir fabrikada aynı ortamda çalışan çok sayıda kablosuz sensör ve kontrol cihazı bulunmaktadır. Bu cihazların bulunduğu ortamda motorlar, inverterler ve yüksek güçlü elektrik panoları nedeniyle elektromanyetik parazit oldukça yüksektir. Bu sistemde FHSS tabanlı bir kablosuz haberleşme altyapısı tercih edilmiştir. Bu tercihin yapılmasının en temel nedeni aşağıdakilerden hangisidir?",
         "options": [
             "FHSS’in daha düşük güç tüketmesi",
             "FHSS’in yalnızca kısa mesafelerde çalışması",
@@ -840,7 +840,7 @@ const allQuestions = [
         "correctAnswer": 2
     },
     {
-        "question": "Bir DSSS sisteminde alıcı taraf, göndericide kullanılan PN (chip) dizisini bilmemektedir. Ortamda yalnızca DSSS sinyali ve beyaz gürültü bulunmaktadır.",
+        "question": "Bir DSSS sisteminde alıcı taraf, göndericide kullanılan PN (chip) dizisini bilmemektedir. Ortamda yalnızca DSSS sinyali ve beyaz gürültü bulunmaktadır. Bu durumda alıcının karşılaşacağı durum aşağıdakilerden hangisidir?",
         "options": [
             "Sinyali dar bantlı bir işaret olarak algılar",
             "Sinyali doğrudan demodüle ederek orijinal veriyi elde eder",

@@ -117,8 +117,7 @@ C) SIFS
 D) NAV
 E) ACK Timeout
 CEVAP: D
-20- 5G ağlarında kullanılan Millimeter Wave (Milimetre Dalga) teknolojisi, 30 GHz ile 300 GHz arasındaki yüksek frekans bantlarını ifade eder. Bu teknoloji çok yüksek veri hızlarına imkan tanısa da fiziksel yayılım açısından bazı sınırlamalara sahiptir.
-Buna göre, mmWave teknolojisinin bu kısıtlamalarını aşmak ve kapsama alanını optimize etmek için 5G mimarisinde aşağıdaki yöntemlerden hangisi en kritik rolü oynar?
+20- 5G ağlarında kullanılan Millimeter Wave (Milimetre Dalga) teknolojisi, 30 GHz ile 300 GHz arasındaki yüksek frekans bantlarını ifade eder. Bu teknoloji çok yüksek veri hızlarına imkan tanısa da fiziksel yayılım açısından bazı sınırlamalara sahiptir. Buna göre, mmWave teknolojisinin bu kısıtlamalarını aşmak ve kapsama alanını optimize etmek için 5G mimarisinde aşağıdaki yöntemlerden hangisi en kritik rolü oynar?
 A) Enerji tasarrufu için baz istasyonu sayısını azaltmak
 B) Düşük frekanslı 4G spektrumuna tamamen geri dönmek
 C) Yoğun alanlarda Small Cell (Küçük Hücre) birimlerini sıklaştırarak kapsama alanı sağlamak
@@ -255,8 +254,7 @@ C) MAC Adresi
 D) Varsayılan Geçit (Gateway)
 E) Alt Ağ Maskesi (Subnet Mask)
 CEVAP:B
-40- Can, evindeki Wi-Fi ağını kullanırken modern yönlendiricilerin hem 2.4 GHz hem de 5 GHz bandında yayın yaptığını görür. Yan odada ve duvar arkasında 2.4 GHz sinyalinin, 5 GHz'e göre çok daha güçlü çektiğini fark eder.
-Fizik kurallarına göre, 2.4 GHz sinyallerinin engellerin (duvar, kapı vb.) arkasına daha iyi ulaşmasının temel sebebi nedir?
+40- Can, evindeki Wi-Fi ağını kullanırken modern yönlendiricilerin hem 2.4 GHz hem de 5 GHz bandında yayın yaptığını görür. Yan odada ve duvar arkasında 2.4 GHz sinyalinin, 5 GHz'e göre çok daha güçlü çektiğini fark eder. Fizik kurallarına göre, 2.4 GHz sinyallerinin engellerin (duvar, kapı vb.) arkasına daha iyi ulaşmasının temel sebebi nedir?
 A) 2.4 GHz sinyallerinin daha yüksek enerji taşıması
 B) 2.4 GHz sinyallerinin daha kısa dalga boyuna sahip olması
 C) 2.4 GHz sinyallerinin daha uzun dalga boyuna sahip olması
@@ -515,8 +513,7 @@ D) Gelişmiş hata düzeltme (Coding/Decoding) tekniklerinin kullanımına imkan
 E) Çoklu Erişim (Multiple Access) tekniklerine uygun olup, aynı anda birden fazla kullanıcının haberleşmesine izin vermesi.
 CEVAP: C
 SORU 28
-Bir fabrikada aynı ortamda çalışan çok sayıda kablosuz sensör ve kontrol cihazı bulunmaktadır.
-Bu cihazların bulunduğu ortamda motorlar, inverterler ve yüksek güçlü elektrik panoları nedeniyle elektromanyetik parazit oldukça yüksektir. Bu sistemde FHSS tabanlı bir kablosuz haberleşme altyapısı tercih edilmiştir. Bu tercihin yapılmasının en temel nedeni aşağıdakilerden hangisidir?
+Bir fabrikada aynı ortamda çalışan çok sayıda kablosuz sensör ve kontrol cihazı bulunmaktadır. Bu cihazların bulunduğu ortamda motorlar, inverterler ve yüksek güçlü elektrik panoları nedeniyle elektromanyetik parazit oldukça yüksektir. Bu sistemde FHSS tabanlı bir kablosuz haberleşme altyapısı tercih edilmiştir. Bu tercihin yapılmasının en temel nedeni aşağıdakilerden hangisidir?
 A) FHSS’in daha düşük güç tüketmesi
 B) FHSS’in yalnızca kısa mesafelerde çalışması 
 C) FHSS’in sürekli frekans değiştirerek parazitli kanallardan kaçabilmesi
