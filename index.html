@@ -17,8 +17,15 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @media (min-width: 769px) {
+            body {
+                align-items: center;
+            }
         }
 
         .quiz-container {
@@ -28,6 +35,13 @@
             max-width: 800px;
             width: 100%;
             padding: 40px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 769px) {
+            .quiz-container {
+                margin-top: 0;
+            }
         }
 
         .header {
@@ -238,6 +252,10 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                align-items: flex-start;
+            }
+
             .quiz-container {
                 padding: 20px;
                 margin: 10px;
@@ -290,6 +308,7 @@
         @media (max-width: 480px) {
             body {
                 padding: 10px;
+                align-items: flex-start;
             }
 
             .quiz-container {
@@ -457,7 +476,14 @@
             
             if (isNaN(questionNo) || questionNo < 1 || questionNo > allQuestions.length) {
                 alert(`Lütfen 1 ile ${allQuestions.length} arasında bir sayı girin!`);
-                input.focus();
+                // Focus'u scroll yapmadan yap
+                setTimeout(() => {
+                    if (input.focus) {
+                        input.focus({ preventScroll: true });
+                    } else {
+                        input.focus();
+                    }
+                }, 100);
                 return;
             }
             
