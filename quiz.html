@@ -225,7 +225,7 @@
         }
 
         .question-navigation {
-            margin-bottom: 20px;
+            margin-top: 20px;
             display: flex;
             gap: 10px;
             align-items: center;
@@ -414,14 +414,14 @@
             <div class="result" id="result" style="display: none;"></div>
         </div>
 
-        <div class="question-navigation">
-            <input type="number" id="questionInput" placeholder="Soru No" min="1" onkeypress="if(event.key === 'Enter') goToQuestion()">
-            <button class="btn-secondary" onclick="goToQuestion()">Soruya Git</button>
-        </div>
-
         <div class="buttons">
             <button class="btn-secondary" id="randomBtn" onclick="randomQuestion()">Rastgele Soru</button>
             <button class="btn-success" id="checkBtn" onclick="checkAnswer()" style="display: none;">Cevabı Kontrol Et</button>
+        </div>
+
+        <div class="question-navigation">
+            <input type="number" id="questionInput" placeholder="Soru No" min="1" onkeypress="if(event.key === 'Enter') goToQuestion()">
+            <button class="btn-secondary" onclick="goToQuestion()">Soruya Git</button>
         </div>
     </div>
 
