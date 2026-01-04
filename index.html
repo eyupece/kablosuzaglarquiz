@@ -209,6 +209,33 @@
             color: #e65100;
         }
 
+        .question-navigation {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .question-navigation input {
+            padding: 10px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 150px;
+            text-align: center;
+        }
+
+        .question-navigation input:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
         @media (max-width: 600px) {
             .quiz-container {
                 padding: 20px;
@@ -261,6 +288,11 @@
             <div class="result" id="result" style="display: none;"></div>
         </div>
 
+        <div class="question-navigation">
+            <input type="number" id="questionInput" placeholder="Soru No" min="1" onkeypress="if(event.key === 'Enter') goToQuestion()">
+            <button class="btn-secondary" onclick="goToQuestion()">Soruya Git</button>
+        </div>
+
         <div class="buttons">
             <button class="btn-primary" id="nextBtn" onclick="nextQuestion()">Sonraki Soru</button>
             <button class="btn-secondary" id="randomBtn" onclick="randomQuestion()">Rastgele Soru</button>
@@ -276,6 +308,8 @@
         let correctCount = 0;
         let wrongCount = 0;
         let usedQuestions = new Set();
+        let shuffledOptions = []; // Rastgele sıralanmış şıklar
+        let originalCorrectIndex = -1; // Orijinal doğru cevap index'i
 
         // Soruları karıştır
         function shuffleArray(array) {
@@ -313,6 +347,23 @@
             randomQuestion();
         }
 
+        // Belirli bir soruya git
+        function goToQuestion() {
+            const input = document.getElementById('questionInput');
+            const questionNo = parseInt(input.value);
+            
+            if (isNaN(questionNo) || questionNo < 1 || questionNo > allQuestions.length) {
+                alert(`Lütfen 1 ile ${allQuestions.length} arasında bir sayı girin!`);
+                input.focus();
+                return;
+            }
+            
+            currentQuestionIndex = questionNo - 1;
+            usedQuestions.add(currentQuestionIndex);
+            displayQuestion();
+            input.value = '';
+        }
+
         // Soruyu göster
         function displayQuestion() {
             const question = allQuestions[currentQuestionIndex];
@@ -321,16 +372,28 @@
             document.getElementById('questionNumber').textContent = `Soru ${currentQuestionIndex + 1} / ${allQuestions.length}`;
             document.getElementById('questionText').textContent = question.question;
             
+            // Şıkları rastgele sırala
+            const optionsWithIndex = question.options.map((opt, idx) => ({ text: opt, originalIndex: idx }));
+            shuffledOptions = shuffleArray(optionsWithIndex);
+            
+            // Orijinal doğru cevabın yeni index'ini bul
+            originalCorrectIndex = question.correctAnswer;
+            const correctOption = shuffledOptions.findIndex(opt => opt.originalIndex === originalCorrectIndex);
+            
             const optionsDiv = document.getElementById('options');
             optionsDiv.innerHTML = '';
 
-            question.options.forEach((option, index) => {
+            shuffledOptions.forEach((optionObj, index) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.className = 'option';
-                optionDiv.textContent = option;
+                optionDiv.textContent = optionObj.text;
                 optionDiv.onclick = () => selectOption(index);
+                optionDiv.dataset.originalIndex = optionObj.originalIndex; // Orijinal index'i sakla
                 optionsDiv.appendChild(optionDiv);
             });
+
+            // Doğru cevabın yeni index'ini sakla
+            question.shuffledCorrectIndex = correctOption;
 
             document.getElementById('result').style.display = 'none';
             document.getElementById('checkBtn').style.display = 'block';
@@ -369,8 +432,8 @@
                 opt.onclick = null;
             });
 
-            // Doğru cevabı göster
-            const correctIndex = question.correctAnswer;
+            // Rastgele sıralanmış şıklardaki doğru cevap index'i
+            const correctIndex = question.shuffledCorrectIndex !== undefined ? question.shuffledCorrectIndex : question.correctAnswer;
             options[correctIndex].classList.add('correct');
 
             if (selectedOption === correctIndex) {
@@ -378,7 +441,8 @@
                 resultDiv.className = 'result correct';
                 correctCount++;
             } else {
-                resultDiv.textContent = `❌ Yanlış Cevap! Doğru cevap: ${question.options[correctIndex]}`;
+                const correctText = shuffledOptions[correctIndex].text;
+                resultDiv.textContent = `❌ Yanlış Cevap! Doğru cevap: ${correctText}`;
                 resultDiv.className = 'result incorrect';
                 wrongCount++;
                 options[selectedOption].classList.add('incorrect');
@@ -404,6 +468,12 @@
 
         // Sayfa yüklendiğinde ilk soruyu göster
         window.onload = function() {
+            // Input alanının max değerini dinamik olarak ayarla
+            const input = document.getElementById('questionInput');
+            if (input) {
+                input.setAttribute('max', allQuestions.length);
+                input.setAttribute('placeholder', `Soru No (1-${allQuestions.length})`);
+            }
             updateStats();
             randomQuestion();
         };
