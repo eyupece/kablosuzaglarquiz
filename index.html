@@ -48,6 +48,7 @@
             padding: 20px;
             background: #f8f9fa;
             border-radius: 10px;
+            flex-wrap: wrap;
         }
 
         .stat-item {
@@ -236,9 +237,10 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .quiz-container {
                 padding: 20px;
+                margin: 10px;
             }
 
             .header h1 {
@@ -247,11 +249,116 @@
 
             .question-text {
                 font-size: 1em;
+                padding: 15px;
             }
 
             .stats {
                 flex-direction: column;
                 gap: 15px;
+                padding: 15px;
+            }
+
+            .stat-value {
+                font-size: 1.5em;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            button {
+                width: 100%;
+                padding: 12px 20px;
+            }
+
+            .question-navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .question-navigation input {
+                width: 100%;
+            }
+
+            .option {
+                padding: 12px 15px;
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .quiz-container {
+                padding: 15px;
+                border-radius: 15px;
+                margin: 0;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
+
+            .question-number {
+                font-size: 0.95em;
+            }
+
+            .question-text {
+                font-size: 0.9em;
+                padding: 12px;
+                line-height: 1.5;
+            }
+
+            .stat-value {
+                font-size: 1.3em;
+            }
+
+            .stat-label {
+                font-size: 0.8em;
+            }
+
+            .option {
+                padding: 12px 15px;
+                font-size: 0.9em;
+                min-height: 44px; /* Dokunmatik için minimum yükseklik */
+                display: flex;
+                align-items: center;
+            }
+
+            button {
+                font-size: 1em;
+                padding: 12px 20px;
+                min-height: 44px; /* Dokunmatik için minimum yükseklik */
+            }
+
+            .question-navigation input {
+                min-height: 44px; /* Dokunmatik için minimum yükseklik */
+                font-size: 1em;
+            }
+
+            .result {
+                font-size: 1em;
+                padding: 15px;
+            }
+        }
+
+        /* Dokunmatik cihazlar için iyileştirmeler */
+        @media (hover: none) and (pointer: coarse) {
+            .option:hover {
+                transform: none;
+            }
+
+            .option:active {
+                transform: scale(0.98);
+                background: #d1d5db;
+            }
+
+            button:active {
+                transform: scale(0.98);
             }
         }
     </style>
